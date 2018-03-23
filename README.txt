@@ -1,3 +1,16 @@
+This is a fork of pwdhash.py which is based on the official JavaScript
+implementation of the Stanford PwdHash algorithm. For details see below.
+
+This fork attempts to modernise pwdhash.py.
+
+Features:
+    - Newer hashing algorithms
+    - Stronger password
+
+
+
+ORIGINAL NOTICE:
+
 This is an implementation of Stanford PwdHash algorithm [1] based on JavaScript
 version from https://www.pwdhash.com/pwdhash.js.
 
