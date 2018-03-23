@@ -6,23 +6,10 @@ import itertools
 import re
 import sys
 
-# Python 2.4 compatibility
-try:
-    import hashlib
-    _md5 = hashlib.md5
-except ImportError:
-    import md5
-    _md5 = md5
-try:
-    next(iter("a"))
-except NameError:
-    def next(x):
-        return x.next()
-# Python 2.x and Python 3.0(?) compatiblity
-try:
-    input = raw_input
-except NameError:
-    pass
+
+import hashlib
+_md5 = hashlib.md5
+
 
 def b64_hmac_md5(key, data):
     """

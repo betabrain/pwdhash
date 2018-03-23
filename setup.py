@@ -17,7 +17,7 @@ Stanford PwdHash (https://www.pwdhash.com/)""",
                    'Environment :: MacOS X',
                    'License :: OSI Approved :: BSD License',
                    'Operating System :: OS Independent',
-                   'Programming Language :: Python',
+                   'Programming Language :: Python :: 3 :: Only',
                    'Topic :: Internet',
                    'Topic :: Software Development :: Libraries :: Python Modules',
                    'Topic :: Utilities'],
@@ -31,4 +31,3 @@ Stanford PwdHash (https://www.pwdhash.com/)""",
       zip_safe=False,
       entry_points={ 'console_scripts': [ 'pwdhash = pwdhash:console_main' ] },
       )
-      
