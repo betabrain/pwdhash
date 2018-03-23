@@ -1,22 +1,21 @@
 #!/usr/bin/env python
 
 import base64
+import hashlib
 import hmac
 import itertools
 import re
 import sys
 
 
-import hashlib
-_md5 = hashlib.md5
-
-
-def b64_hmac_md5(key, data):
+def b64_hmac(key, data, rounds=0, algorithm=hashlib.md5):
     """
-    return base64-encoded HMAC-MD5 for key and data, with trailing '='
-    stripped.
+    Return a base64-encoded HMAC for key and data, with trailing '='
+    stripped. key may be hardened before calculating the HMAC.
     """
-    bdigest = base64.b64encode(hmac.new(key, data, _md5).digest()).strip().decode("utf-8")
+    for _ in range(rounds):
+        key = algorithm(key).digest()
+    bdigest = base64.b64encode(hmac.new(key, data, algorithm).digest()).strip().decode("utf-8")
     return re.sub('=+$', '', bdigest)
 
 
@@ -97,7 +96,7 @@ def generate(password, uri):
     if password.startswith(_password_prefix):
         password = password[len(_password_prefix):]
 
-    password_hash = b64_hmac_md5(password.encode("utf-8"), realm.encode("utf-8"))
+    password_hash = b64_hmac(password.encode("utf-8"), realm.encode("utf-8"))
     size = len(password) + len(_password_prefix)
     nonalphanumeric = len(re.findall(r'\W', password)) != 0
 
